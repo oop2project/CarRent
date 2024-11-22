@@ -9,4 +9,8 @@ public class Car {
     private CarCategory carCategory;
     private CarClass carClass;
     private ReturnStatus returnStatus;
+
+    public Car(double price) {
+        this.price = price;
+    }
 }
