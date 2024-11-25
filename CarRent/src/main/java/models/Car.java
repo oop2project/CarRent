@@ -13,4 +13,14 @@ public class Car {
     public Car(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "price=" + price +
+                ", carCategory=" + carCategory +
+                ", carClass=" + carClass +
+                ", returnStatus=" + returnStatus +
+                '}';
+    }
 }
