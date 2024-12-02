@@ -5,13 +5,13 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
-        <property name="hibernate.connection.driver_class"></property>
-        <property name="hibernate.connection.url"></property>
-        <property name="hibernate.connection.username"></property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/CarRent</property>
+        <property name="hibernate.connection.username">car</property>
+        <property name="hibernate.connection.password">rent</property>
 
         <!-- SQL Dialect -->
-        <property name="hibernate.dialect"></property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
         <!-- Show SQL in console (optional, useful for debugging) -->
         <property name="hibernate.show_sql">true</property>
@@ -20,6 +20,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Add entity class mapping -->
-        <mapping class="models.Car"/>
+        <!-- <mapping class="models.Car"/> -->
+        <mapping class="database_layer.CarEntity"/>
     </session-factory>
 </hibernate-configuration>
