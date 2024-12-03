@@ -19,7 +19,7 @@ public class HelloController {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("register.fxml"));
 
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 220, 340);
+        Scene scene = new Scene(fxmlLoader.load(), 250, 370);
         stage.setTitle("Register a car");
         stage.setScene(scene);
         stage.show();

@@ -7,6 +7,8 @@ import enums.CarClass;
 import enums.ReturnStatus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Car;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +25,27 @@ public class Register {
     public TextField priceField;
 
     private SessionFactory sessionFactory;
+
+
+    @FXML
+    private ComboBox<CarCategory> carCategoryComboBox;
+
+    @FXML
+    private ComboBox<CarClass> carClassComboBox;
+
+    @FXML
+    private ComboBox<ReturnStatus> returnStatusComboBox;
+
+    @FXML
+    private Label resultText;
+
+    @FXML
+    public void initialize() {
+        carCategoryComboBox.getItems().setAll(CarCategory.values());
+        carClassComboBox.getItems().setAll(CarClass.values());
+        returnStatusComboBox.getItems().setAll(ReturnStatus.values());
+    }
+
 
 
 //    protected void setUp() {
@@ -46,6 +69,9 @@ public class Register {
     public void onRegisterButtonClick(ActionEvent actionEvent) {
         String priceString = priceField.getText();
         double price = Double.parseDouble(priceString);
+        CarCategory selectedCategory = carCategoryComboBox.getValue();
+        CarClass selectedClass = carClassComboBox.getValue();
+        ReturnStatus selectedStatus = returnStatusComboBox.getValue();
 
 
         Car car = new Car(price);
@@ -65,14 +91,16 @@ public class Register {
             transaction = session.beginTransaction();
 
             // Create and save an entity
-            CarEntity carEntity = new CarEntity(price, CarCategory.SUV, CarClass.FAMILY, ReturnStatus.NO_PROBLEM);
+            //CarEntity carEntity = new CarEntity(price, CarCategory.SUV, CarClass.FAMILY, ReturnStatus.NO_PROBLEM);
+            CarEntity carEntity = new CarEntity(price, selectedCategory, selectedClass, selectedStatus);
             // Set fields as needed
 
             // Use persist() instead of save()
             session.persist(carEntity);
 
             transaction.commit();
-            System.out.println("Employee saved successfully!");
+            System.out.println("Car saved successfully!");
+            resultText.setText("The car is registered!");
 
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
