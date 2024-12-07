@@ -14,8 +14,7 @@ public class OperatorEntity {
     public OperatorEntity() {
     }
 
-    public OperatorEntity(int id, String name, String phoneNumber) {
-        this.id = id;
+    public OperatorEntity(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }

@@ -15,8 +15,7 @@ public class ClientEntity {
     public ClientEntity() {
     }
 
-    public ClientEntity(int id, String name, String phoneNumber, String address) {
-        this.id = id;
+    public ClientEntity(String name, String phoneNumber, String address) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;

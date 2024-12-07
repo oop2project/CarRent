@@ -22,5 +22,7 @@
         <!-- Add entity class mapping -->
         <!-- <mapping class="models.Car"/> -->
         <mapping class="database_layer.CarEntity"/>
+        <mapping class="database_layer.ClientEntity"/>
+        <mapping class="database_layer.OperatorEntity"/>
     </session-factory>
 </hibernate-configuration>

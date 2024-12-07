@@ -1,7 +1,9 @@
 package com.example.carrent;
 
 import database_layer.CarEntity;
+import database_layer.ClientEntity;
 import database_layer.HibernateSetup;
+import database_layer.OperatorEntity;
 import enums.CarCategory;
 import enums.CarClass;
 import enums.ReturnStatus;
@@ -98,6 +100,14 @@ public class Register {
             // Use persist() instead of save()
             session.persist(carEntity);
 
+            //client
+//            ClientEntity clientEntity = new ClientEntity("Stoyan Stanoev","0882656768", "Varna");
+//            session.persist(clientEntity);
+            //operator
+            OperatorEntity operatorEntity = new OperatorEntity("Ivan Ivanov","0882347343");
+            session.persist(operatorEntity);
+
+
             transaction.commit();
             System.out.println("Car saved successfully!");
             resultText.setText("The car is registered!");
@@ -108,6 +118,10 @@ public class Register {
         } finally {
             session.close();
         }
+
+
+
+
 
 //        Session session = HibernateSetup.getSessionFactory().openSession();
 //        Transaction transaction = null;
