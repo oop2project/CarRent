@@ -1,7 +1,6 @@
 package com.example.carrent;
 
 import database_layer.CarEntity;
-import database_layer.ClientEntity;
 import database_layer.HibernateSetup;
 import database_layer.OperatorEntity;
 import enums.CarCategory;
@@ -18,10 +17,9 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-public class Register {
-    private static final Logger logger = LogManager.getLogger(Register.class);
+public class CarRegisterController {
+    private static final Logger logger = LogManager.getLogger(CarRegisterController.class);
 
     @FXML
     public TextField priceField;
@@ -83,13 +81,14 @@ public class Register {
         logger.info(car);
         logger.info(carE);
 
-
+        resultText.setText("");
         //double price = 50;
 
         Session session = HibernateSetup.getSessionFactory().openSession();
         Transaction transaction = null;
 
         try {
+
             transaction = session.beginTransaction();
 
             // Create and save an entity
@@ -104,13 +103,18 @@ public class Register {
 //            ClientEntity clientEntity = new ClientEntity("Stoyan Stanoev","0882656768", "Varna");
 //            session.persist(clientEntity);
             //operator
-            OperatorEntity operatorEntity = new OperatorEntity("Ivan Ivanov","0882347343");
-            session.persist(operatorEntity);
+//            OperatorEntity operatorEntity = new OperatorEntity("Ivan Ivanov","0882347343");
+//            session.persist(operatorEntity);
 
 
             transaction.commit();
             System.out.println("Car saved successfully!");
             resultText.setText("The car is registered!");
+            priceField.clear();
+            carCategoryComboBox.getSelectionModel().clearSelection();
+            carCategoryComboBox.setValue(null);
+            carClassComboBox.getSelectionModel().clearSelection();
+            carClassComboBox.setValue(null);
 
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
