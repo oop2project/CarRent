@@ -9,7 +9,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Button mnemonicParsing="false" text="Rent a car" />
+   <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" text="Rent a car" />
    <Button mnemonicParsing="false" onAction="#onReturnButtonClick" prefHeight="30.0" prefWidth="96.0" text="Return a car" />
 
     <Label fx:id="welcomeText" />

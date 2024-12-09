@@ -24,5 +24,6 @@
         <mapping class="database_layer.CarEntity"/>
         <mapping class="database_layer.ClientEntity"/>
         <mapping class="database_layer.OperatorEntity"/>
+        <mapping class="database_layer.RentedCarsEntity"/>
     </session-factory>
 </hibernate-configuration>
