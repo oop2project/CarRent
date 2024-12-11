@@ -32,6 +32,18 @@ public class MainController {
     }
 
     @FXML
+    public void onRentACarButtonClick() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("rent_a_car.fxml"));
+
+        Stage stage = new Stage();
+        //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Rent a car");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     public void onReturnButtonClick(ActionEvent actionEvent) throws IOException {
         welcomeText.setText("The car is returned");
 
@@ -89,6 +101,8 @@ public class MainController {
 //        stage.show();
 
     }
+
+
 
     @FXML
     public void onClientRegisterButtonClick(ActionEvent actionEvent) throws IOException {
