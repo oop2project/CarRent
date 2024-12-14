@@ -2,13 +2,13 @@ package models;
 
 import enums.CarCategory;
 import enums.CarClass;
-import enums.ReturnStatus;
+import enums.RentStatus;
 
 public class Car {
     private double price;
     private CarCategory carCategory;
     private CarClass carClass;
-    private ReturnStatus returnStatus;
+    private RentStatus rentStatus;
 
     public Car(double price) {
         this.price = price;
@@ -20,7 +20,7 @@ public class Car {
                 "price=" + price +
                 ", carCategory=" + carCategory +
                 ", carClass=" + carClass +
-                ", returnStatus=" + returnStatus +
+                ", returnStatus=" + rentStatus +
                 '}';
     }
 }

@@ -1,8 +1,6 @@
     package database_layer;
 
-    import enums.CarCategory;
-    import enums.CarClass;
-    import enums.ReturnStatus;
+    import enums.*;
     import jakarta.persistence.*;
 
     @Entity
@@ -22,7 +20,13 @@
         private CarClass carClass;
 
         @Enumerated(EnumType.STRING)
+        private RentStatus rentStatus;
+
+        @Enumerated(EnumType.STRING)
         private ReturnStatus returnStatus;
+
+        @Enumerated(EnumType.STRING)
+        private CarBrand carBrand;
 
 
 
@@ -33,12 +37,21 @@
             this.price = price;
         }
 
-        public CarEntity(double price, CarCategory carCategory, CarClass carClass, ReturnStatus returnStatus) {
+        public CarEntity(double price, CarCategory carCategory, CarClass carClass, CarBrand carBrand) {
             this.price = price;
+            this.carBrand = carBrand;
             this.carCategory = carCategory;
             this.carClass = carClass;
-            this.returnStatus = returnStatus;
+            this.rentStatus = RentStatus.NOT_RENTED;
+            this.returnStatus = ReturnStatus.NO_PROBLEM;
         }
+
+        //        public CarEntity(double price, CarCategory carCategory, CarClass carClass, RentStatus rentStatus) {
+//            this.price = price;
+//            this.carCategory = carCategory;
+//            this.carClass = carClass;
+//            this.rentStatus = rentStatus;
+//        }
 
         public CarCategory getCarCategory() {
             return carCategory;
@@ -72,6 +85,14 @@
             this.carClass = carClass;
         }
 
+        public RentStatus getRentStatus() {
+            return rentStatus;
+        }
+
+        public void setRentStatus(RentStatus rentStatus) {
+            this.rentStatus = rentStatus;
+        }
+
         public ReturnStatus getReturnStatus() {
             return returnStatus;
         }
@@ -80,14 +101,44 @@
             this.returnStatus = returnStatus;
         }
 
+        public CarBrand getCarBrand() {
+            return carBrand;
+        }
+
+        public void setCarBrand(CarBrand carBrand) {
+            this.carBrand = carBrand;
+        }
+
+        //        @Override
+//        public String toString() {
+//            return "CarEntity{" +
+//                    "id=" + id +
+//                    ", price=" + price +
+//                    ", carCategory=" + carCategory +
+//                    ", carClass=" + carClass +
+//                    ", rentStatus=" + rentStatus +
+//                    '}';
+//        }
+
+
+//        @Override
+//        public String toString() {
+//            return "CarEntity{" +
+//                    "id=" + id +
+//                    ", price=" + price +
+//                    ", carCategory=" + carCategory +
+//                    ", carClass=" + carClass +
+//                    ", rentStatus=" + rentStatus +
+//                    ", returnStatus=" + returnStatus +
+//                    '}';
+//        }
+
         @Override
         public String toString() {
-            return "CarEntity{" +
-                    "id=" + id +
-                    ", price=" + price +
-                    ", carCategory=" + carCategory +
-                    ", carClass=" + carClass +
-                    ", returnStatus=" + returnStatus +
-                    '}';
+            return
+                    "Brand: " + carBrand +
+                    ", Price per day: " + price +
+                    ", Category: " + carCategory +
+                    ", Class: " + carClass;
         }
     }

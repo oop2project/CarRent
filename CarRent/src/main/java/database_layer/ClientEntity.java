@@ -53,13 +53,21 @@ public class ClientEntity {
         this.address = address;
     }
 
+//    @Override
+//    public String toString() {
+//        return "ClientEntity{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", phoneNumber='" + phoneNumber + '\'' +
+//                ", address='" + address + '\'' +
+//                '}';
+//    }
+
     @Override
     public String toString() {
-        return "ClientEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return
+                "Name: '" + name + '\'' +
+                ", Phone Number: '" + phoneNumber + '\'' +
+                ", Address: '" + address + '\'';
     }
 }

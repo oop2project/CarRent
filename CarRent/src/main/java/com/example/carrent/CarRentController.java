@@ -1,9 +1,7 @@
 package com.example.carrent;
 
 import database_layer.*;
-import enums.CarCategory;
-import enums.CarClass;
-import enums.ReturnStatus;
+import enums.RentStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -119,6 +117,9 @@ public class CarRentController {
             RentedCarsEntity rentedCarsEntity = new RentedCarsEntity(selectedCar,selectedClient,selectedOperator);
 
             session.persist(rentedCarsEntity);
+
+            selectedCar.setRentStatus(RentStatus.RENTED);
+            session.update(selectedCar);
 
 
             transaction.commit();

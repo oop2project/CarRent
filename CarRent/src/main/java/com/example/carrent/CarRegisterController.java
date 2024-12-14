@@ -2,10 +2,10 @@ package com.example.carrent;
 
 import database_layer.CarEntity;
 import database_layer.HibernateSetup;
-import database_layer.OperatorEntity;
+import enums.CarBrand;
 import enums.CarCategory;
 import enums.CarClass;
-import enums.ReturnStatus;
+import enums.RentStatus;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -34,7 +34,7 @@ public class CarRegisterController {
     private ComboBox<CarClass> carClassComboBox;
 
     @FXML
-    private ComboBox<ReturnStatus> returnStatusComboBox;
+    private ComboBox<CarBrand> carBrandComboBox;
 
     @FXML
     private Label resultText;
@@ -43,7 +43,7 @@ public class CarRegisterController {
     public void initialize() {
         carCategoryComboBox.getItems().setAll(CarCategory.values());
         carClassComboBox.getItems().setAll(CarClass.values());
-        returnStatusComboBox.getItems().setAll(ReturnStatus.values());
+        carBrandComboBox.getItems().setAll(CarBrand.values());
     }
 
 
@@ -71,7 +71,7 @@ public class CarRegisterController {
         double price = Double.parseDouble(priceString);
         CarCategory selectedCategory = carCategoryComboBox.getValue();
         CarClass selectedClass = carClassComboBox.getValue();
-        ReturnStatus selectedStatus = returnStatusComboBox.getValue();
+        CarBrand selectedBrand = carBrandComboBox.getValue();
 
 
         Car car = new Car(price);
@@ -93,7 +93,8 @@ public class CarRegisterController {
 
             // Create and save an entity
             //CarEntity carEntity = new CarEntity(price, CarCategory.SUV, CarClass.FAMILY, ReturnStatus.NO_PROBLEM);
-            CarEntity carEntity = new CarEntity(price, selectedCategory, selectedClass, selectedStatus);
+            //CarEntity carEntity = new CarEntity(price, selectedCategory, selectedClass, selectedStatus);
+            CarEntity carEntity = new CarEntity(price, selectedCategory, selectedClass, selectedBrand);
             // Set fields as needed
 
             // Use persist() instead of save()
@@ -115,6 +116,8 @@ public class CarRegisterController {
             carCategoryComboBox.setValue(null);
             carClassComboBox.getSelectionModel().clearSelection();
             carClassComboBox.setValue(null);
+            carClassComboBox.getSelectionModel().clearSelection();
+            carBrandComboBox.setValue(null);
 
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();

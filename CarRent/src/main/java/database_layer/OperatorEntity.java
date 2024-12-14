@@ -43,12 +43,19 @@ public class OperatorEntity {
         this.phoneNumber = phoneNumber;
     }
 
+//    @Override
+//    public String toString() {
+//        return "OperatorEntity{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", phoneNumber='" + phoneNumber + '\'' +
+//                '}';
+//    }
+
     @Override
     public String toString() {
-        return "OperatorEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
+        return
+                "Name: '" + name + '\'' +
+                ", Phone Number: '" + phoneNumber + '\'';
     }
 }
