@@ -77,7 +77,7 @@ public class CarRentController {
         try {
             //carList = session.createQuery("FROM CarEntity", CarEntity.class);
 
-            
+
 //            Query<CarEntity> query1 = session.createQuery("FROM CarEntity", CarEntity.class);
 //            carList = query1.getResultList();
 //
@@ -104,18 +104,25 @@ public class CarRentController {
             transaction = session.beginTransaction();
 
 
-            CarEntity car = session.get(CarEntity.class, 1);
-            ClientEntity client = session.get(ClientEntity.class, 1);
-            OperatorEntity operator = session.get(OperatorEntity.class, 1);
+//            CarEntity car = session.get(CarEntity.class, 2);
+//            ClientEntity client = session.get(ClientEntity.class, 2);
+//            OperatorEntity operator = session.get(OperatorEntity.class, 2);
+
+            CarEntity selectedCar = carComboBox.getValue();
+            ClientEntity selectedClient = clientComboBox.getValue();
+            OperatorEntity selectedOperator = operatorComboBox.getValue();
+
 
             //OperatorEntity operatorEntity = new OperatorEntity(name, phoneNumber);
-            RentedCarsEntity rentedCarsEntity = new RentedCarsEntity(car,client,operator);
 
-            //session.persist(rentedCarsEntity);
+            //RentedCarsEntity rentedCarsEntity = new RentedCarsEntity(car,client,operator);
+            RentedCarsEntity rentedCarsEntity = new RentedCarsEntity(selectedCar,selectedClient,selectedOperator);
+
+            session.persist(rentedCarsEntity);
 
 
             transaction.commit();
-            System.out.println("Operator saved successfully!");
+            System.out.println("Transaction saved successfully!");
             //resultText.setText("The car is registered!");
             //nameField.clear();
             //phoneNumberField.clear();
