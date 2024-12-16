@@ -8,13 +8,15 @@
 
 <AnchorPane prefHeight="392.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrent.CarReturnController">
    <children>
-      <Button layoutX="284.0" layoutY="299.0" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Return" />
+      <Button layoutX="283.0" layoutY="295.0" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Return" />
       <ComboBox fx:id="carComboBox" layoutX="74.0" layoutY="54.0" prefHeight="26.0" prefWidth="471.0" />
       <Label layoutX="256.0" layoutY="36.0" text="Choose a rented car" />
-      <Button layoutX="245.0" layoutY="245.0" mnemonicParsing="false" text="Check car information" />
-      <TextField layoutX="235.0" layoutY="124.0" />
-      <Label layoutX="283.0" layoutY="106.0" text="Kilometers" />
-      <TextField layoutX="237.0" layoutY="184.0" />
-      <Label layoutX="295.0" layoutY="167.0" text="Days" />
+      <TextField fx:id="kilometersField" layoutX="235.0" layoutY="117.0" />
+      <Label layoutX="260.0" layoutY="99.0" text="Kilometers traveled" />
+      <ComboBox fx:id="returnStatusComboBox" layoutX="233.0" layoutY="183.0" prefWidth="150.0" />
+      <Label layoutX="273.0" layoutY="163.0" text="Return Status" />
+      <Label fx:id="returnText" layoutX="198.0" layoutY="336.0" prefHeight="18.0" prefWidth="227.0" />
+      <Label layoutX="280.0" layoutY="233.0" text="Days rented" />
+      <TextField fx:id="daysField" layoutX="233.0" layoutY="251.0" prefHeight="26.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

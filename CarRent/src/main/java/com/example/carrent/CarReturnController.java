@@ -1,18 +1,24 @@
 package com.example.carrent;
 
 import database_layer.*;
+import enums.CarCategory;
+import enums.CarClass;
 import enums.RentStatus;
+import enums.ReturnStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import models.RentPrice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class CarReturnController {
+public class CarReturnController implements RentPrice {
     private List<RentedCarsEntity> rentedCarsList;
 
     private List<CarEntity> carList;
@@ -24,7 +30,22 @@ public class CarReturnController {
     private ComboBox<CarEntity> carComboBox;
 
     @FXML
+    public TextField kilometersField;
+
+    @FXML
+    public TextField daysField;
+
+    @FXML
+    private ComboBox<ReturnStatus> returnStatusComboBox;
+
+    @FXML
+    private Label returnText;
+
+
+
+    @FXML
     public void initialize() {
+        returnStatusComboBox.getItems().setAll(ReturnStatus.values());
         Session session = HibernateSetup.getSessionFactory().openSession();
         try {
             //carList = session.createQuery("FROM CarEntity", CarEntity.class);
@@ -70,6 +91,12 @@ public class CarReturnController {
 //
 //
 //        selectedCar.setRentStatus(RentStatus.NOT_RENTED);
+        String daysString = daysField.getText();
+        int days = Integer.parseInt(daysString);
+        String kilometersString = kilometersField.getText();
+        int kilometers = Integer.parseInt(kilometersString);
+        ReturnStatus selectedReturnStatus = returnStatusComboBox.getValue();
+
 
         Session session = HibernateSetup.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -111,7 +138,7 @@ public class CarReturnController {
             //resultText.setText("The car is registered!");
             //nameField.clear();
             //phoneNumberField.clear();
-
+            returnText.setText("The car is returned! The rent price is: " + this.getRentPrice(days,kilometers, selectedReturnStatus,selectedCar));
             this.initialize();
 
 
@@ -121,5 +148,15 @@ public class CarReturnController {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public double getRentPrice(int days, int kilometers, ReturnStatus returnStatus, CarEntity carEntity) {
+        double price = 0;
+        price = carEntity.getPrice()*days + kilometers*0.2;
+        if(returnStatus == ReturnStatus.PROBLEM){
+            price = price + 300;
+        }
+        return price;
     }
 }

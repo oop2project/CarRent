@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="464.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrent.CarRentController">
    <children>
-      <Button layoutX="275.0" layoutY="323.0" mnemonicParsing="false" onAction="#onRentButtonClick" text="Rent the car" />
+      <Button layoutX="275.0" layoutY="331.0" mnemonicParsing="false" onAction="#onRentButtonClick" text="Rent the car" />
       <ComboBox fx:id="carComboBox" layoutX="43.0" layoutY="56.0" prefHeight="26.0" prefWidth="547.0" />
       <ComboBox fx:id="clientComboBox" layoutX="42.0" layoutY="129.0" prefHeight="26.0" prefWidth="547.0" />
       <ComboBox fx:id="operatorComboBox" layoutX="41.0" layoutY="209.0" prefHeight="26.0" prefWidth="547.0" />
