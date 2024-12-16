@@ -136,7 +136,8 @@
         @Override
         public String toString() {
             return
-                    "Brand: " + carBrand +
+                    "Car ID: " + id +
+                    ", Brand: " + carBrand +
                     ", Price per day: " + price +
                     ", Category: " + carCategory +
                     ", Class: " + carClass;

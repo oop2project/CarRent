@@ -32,7 +32,7 @@ public class CarRentController {
         try {
             //carList = session.createQuery("FROM CarEntity", CarEntity.class);
 
-            Query<CarEntity> query1 = session.createQuery("FROM CarEntity", CarEntity.class);
+            Query<CarEntity> query1 = session.createQuery("FROM CarEntity WHERE rentStatus = RentStatus.NOT_RENTED", CarEntity.class);
             carList = query1.getResultList();
 
             Query<ClientEntity> query2 = session.createQuery("FROM ClientEntity", ClientEntity.class);
