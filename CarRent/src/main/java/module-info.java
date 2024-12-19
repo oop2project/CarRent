@@ -14,7 +14,8 @@ module com.example.carrent {
 
     opens com.example.carrent to javafx.fxml;
     //opens database_layer to org.hibernate.orm.core;
-    opens database_layer to org.hibernate.orm.core;
+    opens database_layer to org.hibernate.orm.core, javafx.base;
+
 
     exports com.example.carrent;
 

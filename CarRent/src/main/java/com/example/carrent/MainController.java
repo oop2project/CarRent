@@ -138,4 +138,15 @@ public class MainController {
         stage.show();
 
     }
+
+    @FXML
+    protected void onInformationButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("information.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Information");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
