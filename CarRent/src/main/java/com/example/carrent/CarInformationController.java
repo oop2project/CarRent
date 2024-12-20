@@ -16,14 +16,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
-public class InformationController {
+public class CarInformationController {
     @FXML
     private TableView<CarEntity> carTableView;
 
     private List<CarEntity> carList;
-
-    @FXML
-    private TableView<RentedCarsEntity> rentedCarsEntityTableView;
 
 
     @FXML
@@ -41,8 +38,8 @@ public class InformationController {
     @FXML
     private TableColumn<CarEntity, String> classColumn;
 
-    @FXML
-    private Label tableText;
+//    @FXML
+//    private Label tableText;
 
     @FXML
     public void initialize() {
@@ -53,10 +50,6 @@ public class InformationController {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("carCategory"));
         classColumn.setCellValueFactory(new PropertyValueFactory<>("carClass"));
 
-    }
-
-    @FXML
-    public void onAvailableCarsButtonClick(ActionEvent actionEvent) {
         Session session = HibernateSetup.getSessionFactory().openSession();
         try {
 
@@ -77,12 +70,43 @@ public class InformationController {
 
             ObservableList<CarEntity> notRentedcarsObservableList = FXCollections.observableArrayList(carList);
             carTableView.setItems(notRentedcarsObservableList);
-            tableText.setText("Available Cars");
+            //tableText.setText("Available Cars");
 
         } catch (Exception   e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
+    }
+
+    @FXML
+    public void onAvailableCarsButtonClick(ActionEvent actionEvent) {
+//        Session session = HibernateSetup.getSessionFactory().openSession();
+//        try {
+//
+////            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+////            priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+////            brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
+////            categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+////            classColumn.setCellValueFactory(new PropertyValueFactory<>("class"));
+//
+//
+//            Query<CarEntity> query1 = session.createQuery("FROM CarEntity WHERE rentStatus = RentStatus.NOT_RENTED" , CarEntity.class);
+//            //query1.setParameter("status", RentStatus.RENTED);
+//            carList = query1.getResultList();
+//
+//
+//            System.out.println(carList);
+//
+//
+//            ObservableList<CarEntity> notRentedcarsObservableList = FXCollections.observableArrayList(carList);
+//            carTableView.setItems(notRentedcarsObservableList);
+//            tableText.setText("Available Cars");
+//
+//        } catch (Exception   e) {
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
     }
 }

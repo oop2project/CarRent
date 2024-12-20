@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="374.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrent.CarInformationController">
+    <children>
+        <TableView fx:id="carTableView" layoutY="62.0" prefHeight="288.0" prefWidth="487.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="43.19997787475586" text="ID" />
+                <TableColumn fx:id="brandColumn" prefWidth="121.60003662109375" text="BRAND" />
+                <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="93.59992980957031" text="PRICE PER DAY" />
+                <TableColumn fx:id="categoryColumn" prefWidth="77.60003662109375" text="CATEGORY" />
+                <TableColumn fx:id="classColumn" prefWidth="85.5999755859375" text="CLASS" />
+            </columns>
+        </TableView>
+        <Label fx:id="tableText" layoutX="45.0" layoutY="36.0" prefHeight="18.0" prefWidth="95.0" />
+    </children>
+</AnchorPane>
