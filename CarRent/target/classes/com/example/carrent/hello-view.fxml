@@ -16,5 +16,6 @@
    <Button mnemonicParsing="false" onAction="#onOperatorRegisterButtonClick" text="Register an operator" />
    <Button mnemonicParsing="false" onAction="#onClientRegisterButtonClick" text="Register a client" />
     <Button onAction="#onHelloButtonClick" text="Register a car" />
-   <Button onAction="#onInformationButtonClick" mnemonicParsing="false" text="Information" />
+   <Label />
+   <Button mnemonicParsing="false" onAction="#onInformationButtonClick" text="Information" />
 </VBox>

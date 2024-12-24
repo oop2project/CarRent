@@ -127,6 +127,7 @@ public class CarRentController {
             //resultText.setText("The car is registered!");
             //nameField.clear();
             //phoneNumberField.clear();
+            this.initialize();
 
 
         } catch (Exception e) {

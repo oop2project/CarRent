@@ -1,9 +1,11 @@
 package com.example.carrent;
 
 import database_layer.*;
+import enums.ReturnStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,6 +31,11 @@ public class RentInformationController {
 
     @FXML
     private TableColumn<RentedCarsEntity, OperatorEntity> operatorColumn;
+
+    @FXML
+    private ComboBox<OperatorEntity> operatorComboBox;
+
+    private List<OperatorEntity> operatorList;
 
     @FXML
     public void initialize() {
@@ -59,7 +66,58 @@ public class RentInformationController {
             rentedCarsEntityTableView.setItems(notRentedcarsObservableList);
             //tableText.setText("Available Cars");
 
+
+
+            Query<OperatorEntity> query2 = session.createQuery("FROM OperatorEntity" , OperatorEntity.class);
+            //query1.setParameter("status", RentStatus.RENTED);
+            operatorList = query2.getResultList();
+
+
+            //System.out.println(operatorList);
+
+
+            ObservableList<OperatorEntity> operatorObservableList = FXCollections.observableArrayList(operatorList);
+
+
+            //System.out.println(carObservableList);
+            operatorComboBox.setItems(operatorObservableList);
+
+
+
+
         } catch (Exception   e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+
+
+
+
+    }
+
+    @FXML
+    public void onCheckOperatorButtonClick() {
+        Session session = HibernateSetup.getSessionFactory().openSession();
+        try {
+
+            OperatorEntity selectedOperator = operatorComboBox.getValue();
+
+            Query<RentedCarsEntity> query1 = session.createQuery("FROM RentedCarsEntity WHERE operator = :selectedOperator" , RentedCarsEntity.class);
+            query1.setParameter("selectedOperator", selectedOperator);
+            rentedCarsList = query1.getResultList();
+
+
+            System.out.println(rentedCarsList);
+
+
+            ObservableList<RentedCarsEntity> notRentedcarsObservableList = FXCollections.observableArrayList(rentedCarsList);
+            rentedCarsEntityTableView.setItems(notRentedcarsObservableList);
+
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
