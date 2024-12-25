@@ -116,10 +116,14 @@ public class CarRentController {
             //RentedCarsEntity rentedCarsEntity = new RentedCarsEntity(car,client,operator);
             RentedCarsEntity rentedCarsEntity = new RentedCarsEntity(selectedCar,selectedClient,selectedOperator);
 
+            selectedClient.updateRentNumber();
+            selectedCar.updateRentNumber();
+
             session.persist(rentedCarsEntity);
 
             selectedCar.setRentStatus(RentStatus.RENTED);
             session.update(selectedCar);
+            session.update(selectedClient);
 
 
             transaction.commit();
@@ -127,6 +131,7 @@ public class CarRentController {
             //resultText.setText("The car is registered!");
             //nameField.clear();
             //phoneNumberField.clear();
+
             this.initialize();
 
 

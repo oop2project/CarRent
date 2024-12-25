@@ -30,5 +30,17 @@ public class InfoController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    @FXML
+    public void onStatisticsButtonClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("statistics_information.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Statistics");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
 

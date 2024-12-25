@@ -17,6 +17,8 @@
         </columns>
       </TableView>
       <ComboBox fx:id="operatorComboBox" layoutX="60.0" layoutY="333.0" prefHeight="26.0" prefWidth="333.0" />
-      <Button layoutX="438.0" layoutY="334.0" mnemonicParsing="false" onAction="#onCheckOperatorButtonClick" text="Check operaor" />
+      <Button layoutX="404.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCheckOperatorButtonClick" text="Check operaor" />
+      <Button layoutX="956.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCheckClientButtonClick" text="Check client" />
+      <ComboBox fx:id="clientComboBox" layoutX="613.0" layoutY="333.0" prefHeight="26.0" prefWidth="334.0" />
    </children>
 </AnchorPane>

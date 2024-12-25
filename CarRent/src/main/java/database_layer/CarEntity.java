@@ -2,10 +2,11 @@
 
     import enums.*;
     import jakarta.persistence.*;
+    import models.UpdateRentNumber;
 
     @Entity
     @Table(name = "car")
-    public class CarEntity {
+    public class CarEntity implements UpdateRentNumber {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +29,8 @@
         @Enumerated(EnumType.STRING)
         private CarBrand carBrand;
 
+        private int numberOfRents;
+
 
 
         public CarEntity() {
@@ -44,6 +47,7 @@
             this.carClass = carClass;
             this.rentStatus = RentStatus.NOT_RENTED;
             this.returnStatus = ReturnStatus.NO_PROBLEM;
+            this.numberOfRents = 0;
         }
 
         //        public CarEntity(double price, CarCategory carCategory, CarClass carClass, RentStatus rentStatus) {
@@ -133,6 +137,14 @@
 //                    '}';
 //        }
 
+        public int getNumberOfRents() {
+            return numberOfRents;
+        }
+
+        public void setNumberOfRents(int numberOfRents) {
+            this.numberOfRents = numberOfRents;
+        }
+
         @Override
         public String toString() {
             return
@@ -141,5 +153,10 @@
                     ", Price per day: " + price +
                     ", Category: " + carCategory +
                     ", Class: " + carClass;
+        }
+
+        @Override
+        public void updateRentNumber() {
+            this.numberOfRents++;
         }
     }

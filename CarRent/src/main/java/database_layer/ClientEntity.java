@@ -1,16 +1,18 @@
 package database_layer;
 
 import jakarta.persistence.*;
+import models.UpdateRentNumber;
 
 @Entity
 @Table(name = "client")
-public class ClientEntity {
+public class ClientEntity implements UpdateRentNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String phoneNumber;
     private String address;
+    private int numberOfRents;
 
     public ClientEntity() {
     }
@@ -19,6 +21,7 @@ public class ClientEntity {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.numberOfRents = 0;
     }
 
     public int getId() {
@@ -63,11 +66,26 @@ public class ClientEntity {
 //                '}';
 //    }
 
+
+    public int getNumberOfRents() {
+        return numberOfRents;
+    }
+
+    public void setNumberOfRents(int numberOfRents) {
+        this.numberOfRents = numberOfRents;
+    }
+
     @Override
     public String toString() {
         return
                 "Name: '" + name + '\'' +
                 ", Phone Number: '" + phoneNumber + '\'' +
                 ", Address: '" + address + '\'';
+    }
+
+
+    @Override
+    public void updateRentNumber() {
+        this.numberOfRents++;
     }
 }

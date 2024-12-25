@@ -37,6 +37,12 @@ public class RentInformationController {
 
     private List<OperatorEntity> operatorList;
 
+
+    @FXML
+    private ComboBox<ClientEntity> clientComboBox;
+
+    private List<ClientEntity> clientList;
+
     @FXML
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -81,7 +87,24 @@ public class RentInformationController {
 
             //System.out.println(carObservableList);
             operatorComboBox.setItems(operatorObservableList);
+            operatorComboBox.setPromptText("Choose an operator");
 
+
+
+            Query<ClientEntity> query3 = session.createQuery("FROM ClientEntity" , ClientEntity.class);
+            //query1.setParameter("status", RentStatus.RENTED);
+            clientList = query3.getResultList();
+
+
+            //System.out.println(operatorList);
+
+
+            ObservableList<ClientEntity> clientObservableList = FXCollections.observableArrayList(clientList);
+
+
+            //System.out.println(carObservableList);
+            clientComboBox.setItems(clientObservableList);
+            clientComboBox.setPromptText("Choose a client");
 
 
 
@@ -106,6 +129,34 @@ public class RentInformationController {
 
             Query<RentedCarsEntity> query1 = session.createQuery("FROM RentedCarsEntity WHERE operator = :selectedOperator" , RentedCarsEntity.class);
             query1.setParameter("selectedOperator", selectedOperator);
+            rentedCarsList = query1.getResultList();
+
+
+            System.out.println(rentedCarsList);
+
+
+            ObservableList<RentedCarsEntity> notRentedcarsObservableList = FXCollections.observableArrayList(rentedCarsList);
+            rentedCarsEntityTableView.setItems(notRentedcarsObservableList);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+
+    @FXML
+    public void onCheckClientButtonClick() {
+        Session session = HibernateSetup.getSessionFactory().openSession();
+        try {
+
+           ClientEntity selectedClient = clientComboBox.getValue();
+
+            Query<RentedCarsEntity> query1 = session.createQuery("FROM RentedCarsEntity WHERE client = :selectedClient" , RentedCarsEntity.class);
+            query1.setParameter("selectedClient", selectedClient);
             rentedCarsList = query1.getResultList();
 
 
