@@ -87,6 +87,7 @@ public class RentInformationController {
 
             //System.out.println(carObservableList);
             operatorComboBox.setItems(operatorObservableList);
+            operatorComboBox.getItems().add(null);
             operatorComboBox.setPromptText("Choose an operator");
 
 
@@ -104,7 +105,9 @@ public class RentInformationController {
 
             //System.out.println(carObservableList);
             clientComboBox.setItems(clientObservableList);
+            clientComboBox.getItems().add(null);
             clientComboBox.setPromptText("Choose a client");
+
 
 
 
@@ -138,7 +141,7 @@ public class RentInformationController {
             ObservableList<RentedCarsEntity> notRentedcarsObservableList = FXCollections.observableArrayList(rentedCarsList);
             rentedCarsEntityTableView.setItems(notRentedcarsObservableList);
 
-
+            operatorComboBox.setValue(null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,6 +169,7 @@ public class RentInformationController {
             ObservableList<RentedCarsEntity> notRentedcarsObservableList = FXCollections.observableArrayList(rentedCarsList);
             rentedCarsEntityTableView.setItems(notRentedcarsObservableList);
 
+            clientComboBox.setValue(null);
 
 
         } catch (Exception e) {

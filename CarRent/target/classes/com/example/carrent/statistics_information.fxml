@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="364.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.carrent.StatisticsController">
     <children>
-        <TableView fx:id="carTableView" layoutX="615.2" layoutY="14.0" prefHeight="274.0" prefWidth="638.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="615.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="14.0">
+        <TableView fx:id="carTableView" layoutX="611.2" layoutY="14.0" prefHeight="274.0" prefWidth="513.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="611.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="14.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="43.19997787475586" text="ID" />
                 <TableColumn fx:id="brandColumn" prefWidth="121.60003662109375" text="BRAND" />
@@ -28,7 +29,10 @@
                 <TableColumn fx:id="clientNumberOfRentsColumn" minWidth="0.0" prefWidth="65.60003662109375" text="RENTS" />
             </columns>
         </TableView>
-      <Button layoutX="844.0" layoutY="303.0" mnemonicParsing="false" text="Search" />
+      <Button layoutX="1070.0" layoutY="303.0" mnemonicParsing="false" onAction="#onSearchCarButtonClick" prefHeight="26.0" prefWidth="54.0" text="Search" />
       <Button layoutX="263.0" layoutY="303.0" mnemonicParsing="false" onAction="#onOrderClientsButtonClick" text="Order by rating" />
+      <ComboBox fx:id="carBrandComboBox" layoutX="611.0" layoutY="303.0" prefHeight="26.0" prefWidth="146.0" />
+      <ComboBox fx:id="carClassComboBox" layoutX="765.0" layoutY="303.0" prefHeight="26.0" prefWidth="146.0" />
+      <ComboBox fx:id="carCategoryComboBox" layoutX="918.0" layoutY="303.0" prefHeight="26.0" prefWidth="146.0" />
     </children>
 </AnchorPane>

@@ -1,11 +1,13 @@
 package com.example.carrent;
 
-import database_layer.CarEntity;
-import database_layer.ClientEntity;
-import database_layer.HibernateSetup;
+import database_layer.*;
+import enums.CarBrand;
+import enums.CarCategory;
+import enums.CarClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +22,7 @@ public class StatisticsController {
     private TableView<CarEntity> carTableView;
 
     private List<CarEntity> carList;
+
 
 
     @FXML
@@ -42,6 +45,16 @@ public class StatisticsController {
 
 //    @FXML
 //    private Label tableText;
+
+    @FXML
+    private ComboBox<CarCategory> carCategoryComboBox;
+
+    @FXML
+    private ComboBox<CarClass> carClassComboBox;
+
+    @FXML
+    private ComboBox<CarBrand> carBrandComboBox;
+
 
 
     @FXML
@@ -81,6 +94,21 @@ public class StatisticsController {
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         clientNumberOfRentsColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfRents"));
+
+
+
+
+        carCategoryComboBox.getItems().setAll(CarCategory.values());
+        carClassComboBox.getItems().setAll(CarClass.values());
+        carBrandComboBox.getItems().setAll(CarBrand.values());
+
+        carCategoryComboBox.getItems().add(null);
+        carClassComboBox.getItems().add(null);
+        carBrandComboBox.getItems().add(null);
+
+        carCategoryComboBox.setPromptText("Choose a Category");
+        carClassComboBox.setPromptText("Choose a Class");
+        carBrandComboBox.setPromptText("Choose a Brand");
 
         Session session = HibernateSetup.getSessionFactory().openSession();
         try {
@@ -149,6 +177,60 @@ public class StatisticsController {
             clientTableView.setItems(clientsObservableList);
 
         } catch (Exception   e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void onSearchCarButtonClick(){
+        CarCategory selectedCategory = carCategoryComboBox.getValue();
+        CarClass selectedClass = carClassComboBox.getValue();
+        CarBrand selectedBrand = carBrandComboBox.getValue();
+
+
+        Session session = HibernateSetup.getSessionFactory().openSession();
+        try {
+            StringBuilder sql = new StringBuilder("FROM CarEntity WHERE true ");
+            //OperatorEntity selectedOperator = operatorComboBox.getValue();
+
+            if(selectedCategory != null){
+                sql.append("AND carCategory = :selectedCategory ");
+            }
+            if(selectedClass != null){
+                sql.append("AND carClass = :selectedClass ");
+            }
+            if(selectedBrand != null){
+                sql.append("AND carBrand = :selectedBrand ");
+            }
+
+            //Query<CarEntity> query1 = session.createQuery("FROM CarEntity WHERE carCategory = :selectedCategory" , CarEntity.class);
+            Query<CarEntity> query1 = session.createQuery(sql.toString(), CarEntity.class);
+
+            if(selectedCategory != null){
+                query1.setParameter("selectedCategory", selectedCategory);
+            }
+            if(selectedClass != null){
+                query1.setParameter("selectedClass", selectedClass);
+            }
+            if(selectedBrand != null){
+                query1.setParameter("selectedBrand", selectedBrand);
+            }
+            //query1.setParameter("selectedCategory", selectedCategory);
+            carList = query1.getResultList();
+
+
+            System.out.println(carList);
+
+
+            ObservableList<CarEntity> carsObservableList = FXCollections.observableArrayList(carList);
+            carTableView.setItems(carsObservableList);
+
+            carCategoryComboBox.setValue(null);
+            carClassComboBox.setValue(null);
+            carBrandComboBox.setValue(null);
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
