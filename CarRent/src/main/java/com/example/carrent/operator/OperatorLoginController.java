@@ -11,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import models.CurrentUser;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -22,6 +25,12 @@ public class OperatorLoginController {
     private List<OperatorEntity> operatorList;
     @FXML
     private ComboBox<OperatorEntity> operatorComboBox;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private Label messageText;
 
     @FXML
     public void initialize() {
@@ -51,14 +60,47 @@ public class OperatorLoginController {
 
     @FXML
     public void onLoginButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("hello-view-operator.fxml"));
+        OperatorEntity selectedOperator = operatorComboBox.getValue();
+        String password = passwordField.getText();
 
-        Stage stage = new Stage();
-        //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
-        //Scene scene = new Scene(fxmlLoader.load(), 620, 440);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("System");
-        stage.setScene(scene);
-        stage.show();
+        if(password.equals("admin")){//        CurrentUser currentUser = new CurrentUser();
+//        currentUser.setName(selectedOperator.getName());
+
+            Stage currentStage = (Stage) operatorComboBox.getScene().getWindow();
+            currentStage.close();
+
+            CurrentUser.setName(selectedOperator.getName());
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("hello-view-operator.fxml"));
+
+            Stage stage = new Stage();
+            //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
+            Scene scene = new Scene(fxmlLoader.load(), 620, 440);
+            //Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("System" + " (" + CurrentUser.getName() + ")");
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            System.out.println("Invalid password");
+            messageText.setText("Invalid password");
+        }
+
+//        CurrentUser currentUser = new CurrentUser();
+//        currentUser.setName(selectedOperator.getName());
+
+//        Stage currentStage = (Stage) operatorComboBox.getScene().getWindow();
+//        currentStage.close();
+//
+//        CurrentUser.setName(selectedOperator.getName());
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("hello-view-operator.fxml"));
+//
+//        Stage stage = new Stage();
+//        //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
+//        Scene scene = new Scene(fxmlLoader.load(), 620, 440);
+//        //Scene scene = new Scene(fxmlLoader.load());
+//        stage.setTitle("System" + " (" + CurrentUser.getName() + ")");
+//        stage.setScene(scene);
+//        stage.show();
     }
 }

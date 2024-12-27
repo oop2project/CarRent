@@ -14,7 +14,8 @@ public class Application extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         //Scene scene = new Scene(fxmlLoader.load(), 620, 440);
-        stage.setTitle("Car administration");
+        //stage.setTitle("Car administration");
+        stage.setTitle("System login");
         stage.setScene(scene);
         stage.show();
 

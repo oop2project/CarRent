@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.CurrentUser;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -28,9 +30,13 @@ public class AdministratorLoginController {
     private PasswordField passwordField;
 
     @FXML
+    private Label messageText;
+
+    @FXML
     public void onLoginButtonClick() throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
+
 
 
         Session session = HibernateSetup.getSessionFactory().openSession();
@@ -46,19 +52,23 @@ public class AdministratorLoginController {
                 Stage currentStage = (Stage) usernameField.getScene().getWindow();
                 currentStage.close();
 
+                CurrentUser.setName(username);
+
                 FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("hello-view-administrator.fxml"));
 
                 Stage stage = new Stage();
                 //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
                 Scene scene = new Scene(fxmlLoader.load(), 620, 440);
                 //Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("System");
+                //stage.setTitle("System");
+                stage.setTitle("System" + " (" + CurrentUser.getName() + ")");
                 stage.setScene(scene);
                 stage.show();
 
 
             }else {
                 System.out.println("Invalid username or password");
+                messageText.setText("Invalid username or password");
             }
 
 

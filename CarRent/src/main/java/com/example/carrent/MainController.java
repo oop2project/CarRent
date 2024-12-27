@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import models.CurrentUser;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -20,13 +21,14 @@ public class MainController {
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
-        welcomeText.setText("The car is registered");
+        //welcomeText.setText("The car is registered");
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("car_register.fxml"));
 
         Stage stage = new Stage();
         //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Register a car");
+        //stage.setTitle("Register a car");
+        stage.setTitle("Register a car" + " (" + CurrentUser.getName() + ")");
         stage.setScene(scene);
         stage.show();
     }
@@ -38,14 +40,15 @@ public class MainController {
         Stage stage = new Stage();
         //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Rent a car");
+        //stage.setTitle("Rent a car");
+        stage.setTitle("Rent a car" + " (" + CurrentUser.getName() + ")");
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     public void onReturnButtonClick(ActionEvent actionEvent) throws IOException {
-        welcomeText.setText("The car is returned");
+        //welcomeText.setText("The car is returned");
 
         //EntityManager entityManager = null;
 //        CarEntity car = entityManager.find(CarEntity.class, 1);
@@ -58,7 +61,8 @@ public class MainController {
         Stage stage = new Stage();
         //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Return a car");
+        //stage.setTitle("Return a car");
+        stage.setTitle("Return a car" + " (" + CurrentUser.getName() + ")");
         stage.setScene(scene);
         stage.show();
 
@@ -120,7 +124,8 @@ public class MainController {
         Stage stage = new Stage();
         //Scene scene = new Scene(fxmlLoader.load(), 260, 370);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Register a client");
+        //stage.setTitle("Register a client");
+        stage.setTitle("Register a client" + " (" + CurrentUser.getName() + ")");
         stage.setScene(scene);
         stage.show();
 
@@ -133,7 +138,8 @@ public class MainController {
         Stage stage = new Stage();
         //Scene scene = new Scene(fxmlLoader.load(), 350, 370);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Register an operator");
+        //stage.setTitle("Register an operator");
+        stage.setTitle("Register an operator" + " (" + CurrentUser.getName() + ")");
         stage.setScene(scene);
         stage.show();
 
