@@ -18,6 +18,10 @@ module com.example.carrent {
 
 
     exports com.example.carrent;
+    exports com.example.carrent.administrator;
+    exports com.example.carrent.operator;
+    opens com.example.carrent.administrator to javafx.fxml;
+    opens com.example.carrent.operator to javafx.fxml;
 
 
 }

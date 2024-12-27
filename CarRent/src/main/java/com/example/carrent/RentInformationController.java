@@ -74,7 +74,7 @@ public class RentInformationController {
 
 
 
-            Query<OperatorEntity> query2 = session.createQuery("FROM OperatorEntity" , OperatorEntity.class);
+            Query<OperatorEntity> query2 = session.createQuery("FROM OperatorEntity ORDER BY name" , OperatorEntity.class);
             //query1.setParameter("status", RentStatus.RENTED);
             operatorList = query2.getResultList();
 
@@ -92,7 +92,7 @@ public class RentInformationController {
 
 
 
-            Query<ClientEntity> query3 = session.createQuery("FROM ClientEntity" , ClientEntity.class);
+            Query<ClientEntity> query3 = session.createQuery("FROM ClientEntity ORDER BY name" , ClientEntity.class);
             //query1.setParameter("status", RentStatus.RENTED);
             clientList = query3.getResultList();
 

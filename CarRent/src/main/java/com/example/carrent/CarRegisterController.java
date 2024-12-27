@@ -44,6 +44,8 @@ public class CarRegisterController {
         carCategoryComboBox.getItems().setAll(CarCategory.values());
         carClassComboBox.getItems().setAll(CarClass.values());
         carBrandComboBox.getItems().setAll(CarBrand.values());
+
+        //carBrandComboBox.setEditable(true);
     }
 
 
