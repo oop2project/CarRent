@@ -6,10 +6,13 @@ import database_layer.OperatorEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class OperatorRegisterController {
+    private static final Logger logger = LogManager.getLogger(OperatorRegisterController.class);
     @FXML
     private TextField nameField;
 
@@ -35,7 +38,8 @@ public class OperatorRegisterController {
 
 
             transaction.commit();
-            System.out.println("Operator saved successfully!");
+            //System.out.println("Operator saved successfully!");
+            logger.info("Car saved successfully!");
             //resultText.setText("The car is registered!");
             nameField.clear();
             phoneNumberField.clear();

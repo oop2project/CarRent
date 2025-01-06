@@ -80,8 +80,8 @@ public class CarRegisterController {
         CarEntity carE = new CarEntity(price);
 
         //System.out.println(car);
-        logger.info(car);
-        logger.info(carE);
+        //logger.info(car);
+        //logger.info(carE);
 
         resultText.setText("");
         //double price = 50;
@@ -111,7 +111,8 @@ public class CarRegisterController {
 
 
             transaction.commit();
-            System.out.println("Car saved successfully!");
+            //System.out.println("Car saved successfully!");
+            logger.info("Car saved successfully!");
             resultText.setText("The car is registered!");
             priceField.clear();
             carCategoryComboBox.getSelectionModel().clearSelection();

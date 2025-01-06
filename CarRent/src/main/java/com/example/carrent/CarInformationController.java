@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 
 public class CarInformationController {
+    private static final Logger logger = LogManager.getLogger(CarInformationController.class);
     @FXML
     private TableView<CarEntity> carTableView;
 
@@ -65,7 +68,8 @@ public class CarInformationController {
             carList = query1.getResultList();
 
 
-            System.out.println(carList);
+            //System.out.println(carList);
+            logger.info(carList);
 
 
             ObservableList<CarEntity> notRentedcarsObservableList = FXCollections.observableArrayList(carList);

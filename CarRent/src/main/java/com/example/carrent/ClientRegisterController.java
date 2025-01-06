@@ -6,10 +6,13 @@ import database_layer.HibernateSetup;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ClientRegisterController {
+    private static final Logger logger = LogManager.getLogger(ClientRegisterController.class);
     @FXML
     private TextField nameField;
 
@@ -38,7 +41,8 @@ public class ClientRegisterController {
 
 
             transaction.commit();
-            System.out.println("Client saved successfully!");
+            //System.out.println("Client saved successfully!");
+            logger.info("Client saved successfully!");
             //resultText.setText("The car is registered!");
             nameField.clear();
             phoneNumberField.clear();

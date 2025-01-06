@@ -9,12 +9,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class RentInformationController {
+    private static final Logger logger = LogManager.getLogger(RentInformationController.class);
     @FXML
     private TableView<RentedCarsEntity> rentedCarsEntityTableView;
 
@@ -65,7 +68,8 @@ public class RentInformationController {
             rentedCarsList = query1.getResultList();
 
 
-            System.out.println(rentedCarsList);
+            //System.out.println(rentedCarsList);
+            logger.info(rentedCarsList);
 
 
             ObservableList<RentedCarsEntity> notRentedcarsObservableList = FXCollections.observableArrayList(rentedCarsList);
@@ -80,7 +84,7 @@ public class RentInformationController {
 
 
             //System.out.println(operatorList);
-
+            logger.info(operatorList);
 
             ObservableList<OperatorEntity> operatorObservableList = FXCollections.observableArrayList(operatorList);
 
@@ -98,7 +102,7 @@ public class RentInformationController {
 
 
             //System.out.println(operatorList);
-
+            logger.info(clientList);
 
             ObservableList<ClientEntity> clientObservableList = FXCollections.observableArrayList(clientList);
 

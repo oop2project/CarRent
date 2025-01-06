@@ -155,4 +155,17 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    public void onOperatorRentACarButtonClick() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("operator_rent_a_car.fxml"));
+
+        Stage stage = new Stage();
+        //Scene scene = new Scene(fxmlLoader.load(), 250, 370);
+        Scene scene = new Scene(fxmlLoader.load());
+        //stage.setTitle("Rent a car");
+        stage.setTitle("Rent a car" + " (" + CurrentUser.getName() + ")");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

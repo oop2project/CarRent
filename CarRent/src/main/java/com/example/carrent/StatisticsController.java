@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -18,6 +20,7 @@ import java.util.List;
 
 public class StatisticsController {
 
+    private static final Logger logger = LogManager.getLogger(StatisticsController.class);
     @FXML
     private TableView<CarEntity> carTableView;
 
@@ -125,7 +128,8 @@ public class StatisticsController {
             carList = query1.getResultList();
 
 
-            System.out.println(carList);
+            //System.out.println(carList);
+            logger.info(carList);
 
 
             ObservableList<CarEntity> notRentedcarsObservableList = FXCollections.observableArrayList(carList);
@@ -141,7 +145,8 @@ public class StatisticsController {
             clientList = query2.getResultList();
 
 
-            System.out.println(clientList);
+            //System.out.println(clientList);
+            logger.info(clientList);
 
 
             ObservableList<ClientEntity> clientsObservableList = FXCollections.observableArrayList(clientList);
@@ -170,7 +175,8 @@ public class StatisticsController {
             clientList = query2.getResultList();
 
 
-            System.out.println(clientList);
+            logger.info(clientList);
+            //System.out.println(clientList);
 
 
             ObservableList<ClientEntity> clientsObservableList = FXCollections.observableArrayList(clientList);
@@ -220,7 +226,8 @@ public class StatisticsController {
             carList = query1.getResultList();
 
 
-            System.out.println(carList);
+            //System.out.println(carList);
+            logger.info(carList);
 
 
             ObservableList<CarEntity> carsObservableList = FXCollections.observableArrayList(carList);

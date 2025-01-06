@@ -12,6 +12,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.RentPrice;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -19,6 +21,7 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class CarReturnController implements RentPrice {
+    private static final Logger logger = LogManager.getLogger(CarReturnController.class);
     private List<RentedCarsEntity> rentedCarsList;
 
     private List<CarEntity> carList;
@@ -134,7 +137,8 @@ public class CarReturnController implements RentPrice {
 
 
             transaction.commit();
-            System.out.println("Transaction saved successfully!");
+            logger.info("Transaction saved successfully!");
+            //System.out.println("Transaction saved successfully!");
             //resultText.setText("The car is registered!");
             //nameField.clear();
             //phoneNumberField.clear();

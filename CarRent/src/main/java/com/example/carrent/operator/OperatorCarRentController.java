@@ -1,4 +1,4 @@
-package com.example.carrent;
+package com.example.carrent.operator;
 
 import database_layer.*;
 import enums.RentStatus;
@@ -6,16 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import models.CurrentUser;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class CarRentController {
-    private static final Logger logger = LogManager.getLogger(CarRentController.class);
+public class OperatorCarRentController {
     private List<CarEntity> carList;
     private List<ClientEntity> clientList;
     private List<OperatorEntity> operatorList;
@@ -41,7 +39,8 @@ public class CarRentController {
             Query<ClientEntity> query2 = session.createQuery("FROM ClientEntity", ClientEntity.class);
             clientList = query2.getResultList();
 
-            Query<OperatorEntity> query3 = session.createQuery("FROM OperatorEntity", OperatorEntity.class);
+            Query<OperatorEntity> query3 = session.createQuery("FROM OperatorEntity WHERE name = :name", OperatorEntity.class);
+            query3.setParameter("name", CurrentUser.getName());
             operatorList = query3.getResultList();
 
             System.out.println(carList);
@@ -130,8 +129,7 @@ public class CarRentController {
 
 
             transaction.commit();
-            logger.info("Transaction saved successfully!");
-            //System.out.println("Transaction saved successfully!");
+            System.out.println("Transaction saved successfully!");
             //resultText.setText("The car is registered!");
             //nameField.clear();
             //phoneNumberField.clear();
